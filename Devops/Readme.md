@@ -1,4 +1,4 @@
-Domain 1: SDLC Automation.
+Domain 1: SDLC Automation.....
 	We will cover CI and CD Process within this section. [Aws Beanstack]
 	==> Aws CodeCommit
 	==> Aws CodePipeline
