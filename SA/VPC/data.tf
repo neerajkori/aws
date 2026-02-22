@@ -22,6 +22,12 @@ data "aws_security_groups" "available" {
 
 }
 
+data "aws_security_group" "details" {
+  depends_on = [ data.aws_security_groups.available ]
+  for_each = toset(data.aws_security_groups.available.ids)
+  id = each.value
+}
+
 data "aws_subnets" "BastionHost_subnet" {
   depends_on = [aws_subnet.vpc_subnet]
   filter {
@@ -40,6 +46,7 @@ data "aws_availability_zones" "available_zones" {
 }
 
 data "aws_route_tables" "available_route-tables" {
+  depends_on = [ aws_route_table.demo-RT ]
   vpc_id = aws_vpc.demovpc.id
   filter {
     name   = "tag:Name"
